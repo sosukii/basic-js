@@ -10,9 +10,32 @@ const { NotImplementedError } = require('../extensions/index.js');
  * For aabbbc should return 2a3bc
  *
  */
-function encodeLine(/* str */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+function encodeLine(str) {
+  if(str.length < 0) return ''
+  // если текущий элемент равен предыдущему, тогда ничего не делать и добавить к аккумулятору +1
+  // если текущий элемент отличается от предыдущего, то:
+  //   1. запушить в массив [acc, само повторяющееся значение] и 
+  //   2. заасайнить в аккумулятор [0, текущее значение]
+  const defaultArr = Array.from(str)
+  const arr = []
+  let acc = 0
+  
+  for(let i=0; i<defaultArr.length; i++){
+    if( defaultArr[i] === defaultArr[i+1]){
+      acc+=1
+    } else{ 
+      console.debug(`defaulArr is ${defaultArr}`)
+      console.debug(`acc: ${acc}`)
+      if(acc === 0){
+        arr.push([defaultArr[i]])
+      } else{
+        arr.push([acc+1, defaultArr[i]])
+      }
+      acc = 0
+    }
+  }
+  console.log(arr)
+  return arr.flat(Infinity).join('')
 }
 
 module.exports = {
