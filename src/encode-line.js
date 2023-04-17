@@ -24,8 +24,7 @@ function encodeLine(str) {
     if( defaultArr[i] === defaultArr[i+1]){
       acc+=1
     } else{ 
-      console.debug(`defaulArr is ${defaultArr}`)
-      console.debug(`acc: ${acc}`)
+
       if(acc === 0){
         arr.push([defaultArr[i]])
       } else{
@@ -34,7 +33,7 @@ function encodeLine(str) {
       acc = 0
     }
   }
-  console.log(arr)
+
   return arr.flat(Infinity).join('')
 }
 
